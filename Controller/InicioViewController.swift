@@ -58,6 +58,14 @@ class InicioViewController: UIViewController {
         if !CharacterSet.decimalDigits.isSuperset(of: set){
             return "Solo puede ingresar numeros"
         }
+//        let menorQue = Int(participantes) ?? 0
+//        if menorQue < 0{
+//            return "No puede ser menor que 0"
+//        }
+        
+//        if participantes.count != 0{
+//            return "no puede estar vacio"
+//        }
         return nil
     }
     
@@ -66,8 +74,9 @@ class InicioViewController: UIViewController {
         startButton.isEnabled = false
         participantesTextField.isHidden = false
         
-        participantesTextField.text = "Requerido"
-        participantesTextField.text = ""
+        requeridoLabel.text = "Valor Obligatorio"
+        requeridoLabel.isHidden = true
+        
     }
     
     func imprimirAlertaTerminos(){
