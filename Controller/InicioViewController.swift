@@ -66,8 +66,9 @@ class InicioViewController: UIViewController {
         startButton.isEnabled = false
         participantesTextField.isHidden = false
         
-        participantesTextField.text = "Requerido"
-        participantesTextField.text = ""
+        requeridoLabel.text = "Valor Obligatorio"
+        requeridoLabel.isHidden = true
+        
     }
     
     func imprimirAlertaTerminos(){
