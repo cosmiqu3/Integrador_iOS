@@ -40,8 +40,9 @@ class RandomViewController: UIViewController {
                 
                 TituloLabel.text = result.activity
                 ParticipanteLabel.text = ParticipantesManager.shared.participante?.participantes //String(result.participants)
-                CategoriaLabel.text = result.type
+                //CategoriaLabel.text = result.type
                 validaPrecios(precio: Double(result.price))
+                buscarCategoria(tipo: result.type)
                 
                 
             } catch let error{
@@ -69,6 +70,17 @@ class RandomViewController: UIViewController {
             PrecioLabel.text = Precio.high.rawValue
             
         }
+    }
+    func buscarCategoria(tipo: String){
+        let arrglosActividades = ActividadesManager.shared.activiadesArr
+       // let objActiviades: Activiades = arrglosActividades.
+        
+        for arrglosActividade in arrglosActividades {
+            if arrglosActividade.typeActividad == tipo{
+                CategoriaLabel.text = arrglosActividade.nombreActiviad
+            }
+        }
+       
     }
 
     /*
