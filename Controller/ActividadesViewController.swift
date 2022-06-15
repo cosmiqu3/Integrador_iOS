@@ -25,7 +25,13 @@ class ActividadesViewController: UIViewController, UITableViewDataSource, UITabl
         
 //        actividadesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "CeldasActiviades")
         // Do any additional setup after loading the view.
+        actividadesTableView.delegate  = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         actividadesTableView.reloadData()
+        
     }
     
     
@@ -56,18 +62,36 @@ class ActividadesViewController: UIViewController, UITableViewDataSource, UITabl
         let cell: ActividadesTableViewCell = actividadesTableView.dequeueReusableCell(withIdentifier: "CeldasActiviades", for: indexPath) as! ActividadesTableViewCell
         
         cell.ActividadesLabel.text = objActiviades.nombreActiviad
-       // performSegue(withIdentifier: "segueActividad", sender: "education")
 //        print(objActiviades.typeActividad)
-
-        
 //        let tipo = objActiviades.typeActividad
-        
-        
+    
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let arreglosActividades = ActividadesManager.shared.activiadesArr
+        let objActiviades: Activiades = arreglosActividades[indexPath.row]
+        
+        performSegue(withIdentifier: "segueActividad", sender: objActiviades.typeActividad)
+        printContent(objActiviades.typeActividad)
+    }
+    
+    
 //    override func performSegue(withIdentifier identifier: String, sender: Any?) {
 //        if identifier == "segueActividad"{
+//            if let controller = segue.destination as? CategoriaViewController{
+//
+//                controller.tipo = "recreational"//sender as! String
+//
+//            }
+//        }
+//    }
+    
+ 
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "segueActividad"{
 //            if let controller = segue.destination as? CategoriaViewController{
 //
 //                controller.tipo = sender as! String
@@ -75,14 +99,5 @@ class ActividadesViewController: UIViewController, UITableViewDataSource, UITabl
 //            }
 //        }
 //    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "segueActividad"{
-            if let controller = segue.destination as? CategoriaViewController{
-
-                controller.tipo = "cooking" //sender as! String
-
-            }
-        }
-    }
 
 }
