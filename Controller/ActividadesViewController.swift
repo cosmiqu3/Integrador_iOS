@@ -72,32 +72,19 @@ class ActividadesViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let arreglosActividades = ActividadesManager.shared.activiadesArr
         let objActiviades: Activiades = arreglosActividades[indexPath.row]
-        
+       
         performSegue(withIdentifier: "segueActividad", sender: objActiviades.typeActividad)
-        printContent(objActiviades.typeActividad)
+        
     }
-    
-    
-//    override func performSegue(withIdentifier identifier: String, sender: Any?) {
-//        if identifier == "segueActividad"{
-//            if let controller = segue.destination as? CategoriaViewController{
-//
-//                controller.tipo = "recreational"//sender as! String
-//
-//            }
-//        }
-//    }
-    
- 
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "segueActividad"{
-//            if let controller = segue.destination as? CategoriaViewController{
-//
-//                controller.tipo = sender as! String
-//
-//            }
-//        }
-//    }
+        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueActividad"{
+            if let controller = segue.destination as? CategoriaViewController{
+
+                controller.tipo = sender as! String
+
+            }
+        }
+    }
 
 }
