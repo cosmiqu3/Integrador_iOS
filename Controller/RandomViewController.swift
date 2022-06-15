@@ -41,6 +41,7 @@ class RandomViewController: UIViewController {
                 TituloLabel.text = result.activity
                 ParticipanteLabel.text = String(result.participants)
                 CategoriaLabel.text = result.type
+                validaPrecios(precio: Double(result.price))
                 
                 
             } catch let error{
@@ -50,6 +51,24 @@ class RandomViewController: UIViewController {
             
         }
         
+    }
+    
+    func validaPrecios(precio: Double){
+        
+        switch precio{
+        case 0.0:
+            PrecioLabel.text = Precio.free.rawValue
+        
+        case 0.0...0.3:
+            PrecioLabel.text = Precio.low.rawValue
+            
+        case 3.0...0.6:
+            PrecioLabel.text = Precio.medium.rawValue
+            
+        default:
+            PrecioLabel.text = Precio.high.rawValue
+            
+        }
     }
 
     /*

@@ -13,6 +13,7 @@ class InicioViewController: UIViewController {
     @IBOutlet weak var requeridoLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
     
+    @IBOutlet weak var terminosSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +23,17 @@ class InicioViewController: UIViewController {
     }
 
     @IBAction func StartOnTap(_ sender: Any) {
+        
         DesHabilitaStartButton()
+        switchChange(sender)
+       
+        
     }
     @IBAction func TyCOnTap(_ sender: Any) {}
     
     @IBAction func TerminosSwitch(_ sender: Any) {
-        imprimirAlertaTerminos()
+        
+        HabilitaStartButton()
     }
     
     @IBAction func participantesChanged(_ sender: Any) {
@@ -40,33 +46,45 @@ class InicioViewController: UIViewController {
            }
            else {
                requeridoLabel.isHidden = true
+               
            }
         }
         HabilitaStartButton()
     }
     
     func HabilitaStartButton(){
-        if requeridoLabel.isHidden{
+        if requeridoLabel.isHidden {
             startButton.isEnabled = true
         }else{
             startButton.isEnabled = false
+            
         }
     }
     
+
     func ValidaParticipante (_ participantes: String) -> String?{
         let set = CharacterSet(charactersIn: participantes)
         if !CharacterSet.decimalDigits.isSuperset(of: set){
             return "Solo puede ingresar numeros"
         }
-//        let menorQue = Int(participantes) ?? 0
-//        if menorQue < 0{
-//            return "No puede ser menor que 0"
-//        }
         
-//        if participantes.count != 0{
-//            return "no puede estar vacio"
-//        }
+        let menorQue = Int(participantes) ?? 0
+        if menorQue == 0 {
+            return "NO puede estar vacio o ser menor que 0"
+        }
         return nil
+    }
+    
+    @IBAction func switchChange(_ sender: Any) {
+        if terminosSwitch.isOn{
+            participantesChanged(sender)
+            
+        }else{
+            
+            imprimirAlertaTerminos()
+            DesHabilitaStartButton()
+            
+        }
     }
     
     func DesHabilitaStartButton()
@@ -77,13 +95,16 @@ class InicioViewController: UIViewController {
         requeridoLabel.text = "Valor Obligatorio"
         requeridoLabel.isHidden = true
         
+        
     }
     
+    
+    
     func imprimirAlertaTerminos(){
-        let alert = UIAlertController(title: "Acepta terminos", message: "Usted debe hacertar los terminos", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Terminos y Condiciones", message: "Para continuar usted debe haceptar Terminos y Condiciones", preferredStyle: .alert)
 
-        alert.addAction(UIAlertAction(title: "Si", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
 
         self.present(alert, animated: true)
     }

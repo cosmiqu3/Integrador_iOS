@@ -10,6 +10,7 @@ import UIKit
 class ActividadesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
+
     
     @IBOutlet weak var actividadesTableView: UITableView!
     //    let actividadesTableView: UITableView = {
@@ -22,11 +23,12 @@ class ActividadesViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidLoad()
         actividadesTableView.dataSource = self //la fuente de datos la controlo yo
         
-        actividadesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "CeldasActiviades")
+//        actividadesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "CeldasActiviades")
         // Do any additional setup after loading the view.
+        actividadesTableView.reloadData()
     }
     
-
+    
     /*
     // MARK: - Navigation
 
@@ -41,20 +43,24 @@ class ActividadesViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let activiadesCell = tableView.dequeueReusableCell(withIdentifier: "CeldasActiviades", for: indexPath)
-        
-        
+    
         let arrglosActividades = ActividadesManager.shared.activiadesArr
         let objActiviades: Activiades = arrglosActividades[indexPath.row]
         
-        //let model = house[indexPath.row]
+//        let activiadesCell = tableView.dequeueReusableCell(withIdentifier: "CeldasActiviades", for: indexPath)
+//        var listContentConfiguration = UIListContentConfiguration.cell()
+//        listContentConfiguration.text = objActiviades.nombreActiviad
+//
+//        activiadesCell.contentConfiguration = listContentConfiguration
         
-        var listContentConfiguration = UIListContentConfiguration.cell()
-        listContentConfiguration.text = objActiviades.nombreActiviad
+        let cell: ActividadesTableViewCell = actividadesTableView.dequeueReusableCell(withIdentifier: "CeldasActiviades", for: indexPath) as! ActividadesTableViewCell
         
-        activiadesCell.contentConfiguration = listContentConfiguration
+        cell.ActividadesLabel.text = objActiviades.nombreActiviad
+        let tipo = objActiviades.typeActividad
         
-        return activiadesCell
+        
+        
+        return cell
     }
 
 }
