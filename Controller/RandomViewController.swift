@@ -62,7 +62,7 @@ class RandomViewController: UIViewController {
         case 0.0...0.3:
             PrecioLabel.text = Precio.low.rawValue
             
-        case 3.0...0.6:
+        case 0.3...0.6:
             PrecioLabel.text = Precio.medium.rawValue
             
         default:

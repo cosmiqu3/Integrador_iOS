@@ -101,7 +101,7 @@ class InicioViewController: UIViewController {
     
     
     func imprimirAlertaTerminos(){
-        let alert = UIAlertController(title: "Terminos y Condiciones", message: "Para continuar usted debe haceptar Terminos y Condiciones", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Ups!", message: "Para continuar usted debe haceptar Terminos y Condiciones", preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         
