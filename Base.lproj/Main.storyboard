@@ -369,9 +369,16 @@ Nisl pulvinar taciti tellus diam quam dictum cursus potenti euismod natoque feug
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titulo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Hh-gw-fMr">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categoria" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Hh-gw-fMr">
                                 <rect key="frame" x="20" y="98" width="374" height="23"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Titulo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Omz-LW-6fY">
+                                <rect key="frame" x="20" y="153" width="374" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -386,14 +393,15 @@ Nisl pulvinar taciti tellus diam quam dictum cursus potenti euismod natoque feug
                     </view>
                     <navigationItem key="navigationItem" title="Categoria" id="uuc-op-WkJ"/>
                     <connections>
+                        <outlet property="CategoriaLabel" destination="2Hh-gw-fMr" id="XcA-nD-ipm"/>
                         <outlet property="ParticipanteLabel" destination="bLf-k6-Hfj" id="IaT-gD-1RO"/>
                         <outlet property="PrecioLabel" destination="dmJ-Fh-Zkz" id="NfM-Zw-Kcd"/>
-                        <outlet property="TituloLabel" destination="2Hh-gw-fMr" id="g6m-al-LA8"/>
+                        <outlet property="TituloLabel" destination="Omz-LW-6fY" id="5An-r7-DX3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DIF-ya-z9i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2480" y="466"/>
+            <point key="canvasLocation" x="2479.7101449275365" y="465.40178571428567"/>
         </scene>
         <!--Actividades View Controller-->
         <scene sceneID="88C-oY-xny">
@@ -430,7 +438,8 @@ Nisl pulvinar taciti tellus diam quam dictum cursus potenti euismod natoque feug
                                                     <buttonConfiguration key="configuration" style="plain" image="chevron.forward" catalog="system"/>
                                                     <connections>
                                                         <action selector="GoCategoriaButton:" destination="cqR-iz-zF6" eventType="valueChanged" id="UCn-CS-DhZ"/>
-                                                        <segue destination="Gyv-fJ-oea" kind="show" id="p3X-HK-GAW"/>
+                                                        <action selector="tomaCategoria:" destination="DUx-8f-ghz" eventType="valueChanged" id="b9i-VN-G6N"/>
+                                                        <segue destination="Gyv-fJ-oea" kind="show" identifier="segueActividad" id="p3X-HK-GAW"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -468,6 +477,7 @@ Nisl pulvinar taciti tellus diam quam dictum cursus potenti euismod natoque feug
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hOn-dB-Enj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="DUx-8f-ghz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1720.289855072464" y="81.026785714285708"/>
         </scene>

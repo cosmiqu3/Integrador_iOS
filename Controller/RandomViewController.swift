@@ -39,7 +39,7 @@ class RandomViewController: UIViewController {
                 print(result)
                 
                 TituloLabel.text = result.activity
-                ParticipanteLabel.text = String(result.participants)
+                ParticipanteLabel.text = ParticipantesManager.shared.participante?.participantes //String(result.participants)
                 CategoriaLabel.text = result.type
                 validaPrecios(precio: Double(result.price))
                 

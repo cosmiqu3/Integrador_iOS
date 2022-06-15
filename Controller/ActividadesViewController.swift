@@ -44,8 +44,8 @@ class ActividadesViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-        let arrglosActividades = ActividadesManager.shared.activiadesArr
-        let objActiviades: Activiades = arrglosActividades[indexPath.row]
+        let arreglosActividades = ActividadesManager.shared.activiadesArr
+        let objActiviades: Activiades = arreglosActividades[indexPath.row]
         
 //        let activiadesCell = tableView.dequeueReusableCell(withIdentifier: "CeldasActiviades", for: indexPath)
 //        var listContentConfiguration = UIListContentConfiguration.cell()
@@ -56,11 +56,33 @@ class ActividadesViewController: UIViewController, UITableViewDataSource, UITabl
         let cell: ActividadesTableViewCell = actividadesTableView.dequeueReusableCell(withIdentifier: "CeldasActiviades", for: indexPath) as! ActividadesTableViewCell
         
         cell.ActividadesLabel.text = objActiviades.nombreActiviad
-        let tipo = objActiviades.typeActividad
+       // performSegue(withIdentifier: "segueActividad", sender: "education")
+//        print(objActiviades.typeActividad)
+
+        
+//        let tipo = objActiviades.typeActividad
         
         
         
         return cell
+    }
+//    override func performSegue(withIdentifier identifier: String, sender: Any?) {
+//        if identifier == "segueActividad"{
+//            if let controller = segue.destination as? CategoriaViewController{
+//
+//                controller.tipo = sender as! String
+//
+//            }
+//        }
+//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueActividad"{
+            if let controller = segue.destination as? CategoriaViewController{
+
+                controller.tipo = "cooking" //sender as! String
+
+            }
+        }
     }
 
 }

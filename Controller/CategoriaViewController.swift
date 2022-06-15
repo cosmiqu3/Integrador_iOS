@@ -10,23 +10,30 @@ import Alamofire
 class CategoriaViewController: UIViewController {
 
     @IBOutlet weak var TituloLabel: UILabel!
+    @IBOutlet weak var CategoriaLabel: UILabel!
     @IBOutlet weak var ParticipanteLabel: UILabel!
     @IBOutlet weak var PrecioLabel: UILabel!
+     
+    
+    var tipo: String = ""
+    var participantes: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
     
-        getActividadesCategoria(tipo: "education")
+        getActividadesCategoria(tipo: tipo)
 
         // Do any additional setup after loading the view.
     }
     
+
     @IBAction func TryButton(_ sender: Any) {
-        getActividadesCategoria(tipo: "education")
+        getActividadesCategoria(tipo: tipo)
     }
     
     func getActividadesCategoria(tipo: String){
+        
         let urlActividades = "http://www.boredapi.com/api/activity"
         let parametro = ["type": tipo]
         
@@ -43,9 +50,13 @@ class CategoriaViewController: UIViewController {
                 let result = try JSONDecoder().decode(ActividadesResponse.self, from: data)
                 print(result)
                 
+                 
+//                self.CategoriaLabel.text = result.type
                 self.TituloLabel.text = result.activity
-                self.ParticipanteLabel.text = String(result.participants)
+                self.ParticipanteLabel.text = ParticipantesManager.shared.participante?.participantes //String(result.participants)
                 self.validaPrecios(precio: Double(result.price))
+                self.buscarCategoria(tipo: result.type)
+                
 
             } catch let error{
                 print("Existe Error: \(error)")
@@ -72,26 +83,20 @@ class CategoriaViewController: UIViewController {
             PrecioLabel.text = Precio.high.rawValue
             
         }
-        
-        
-//        if precio == 0.0 {
-//
-//            PrecioLabel.text = Precio.free.rawValue
-//        } else if precio > 0.0 && precio <= 0.3 {
-//
-//            PrecioLabel.text = Precio.low.rawValue
-//
-//        } else if precio > 3.0 && precio <= 0.6 {
-//
-//            PrecioLabel.text = Precio.medium.rawValue
-//
-//        } else {
-//            PrecioLabel.text = Precio.high.rawValue
-//        }
-        
-        
-        
     }
+    func buscarCategoria(tipo: String){
+        let arrglosActividades = ActividadesManager.shared.activiadesArr
+       // let objActiviades: Activiades = arrglosActividades.
+        
+        for arrglosActividade in arrglosActividades {
+            if arrglosActividade.typeActividad == tipo{
+                CategoriaLabel.text = arrglosActividade.nombreActiviad
+            }
+        }
+       
+    }
+    
+    
     /*
     // MARK: - Navigation
 

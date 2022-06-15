@@ -7,7 +7,13 @@
 
 import Foundation
 class ParticipantesManager{
-   
- 
+    var participante: Participantes? 
+    
+    
+    static let shared = ParticipantesManager()
+    
+    func agregar(partici: Participantes){
+        participante = partici
+    }
     
 }

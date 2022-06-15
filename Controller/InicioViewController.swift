@@ -24,6 +24,12 @@ class InicioViewController: UIViewController {
 
     @IBAction func StartOnTap(_ sender: Any) {
         
+        let participante = participantesTextField.text ?? ""
+        let singleton = ParticipantesManager.shared
+        let objCParticipante = Participantes(participantes: participante)
+        
+        singleton.agregar(partici: objCParticipante)
+        
         DesHabilitaStartButton()
         switchChange(sender)
        
@@ -70,7 +76,7 @@ class InicioViewController: UIViewController {
         
         let menorQue = Int(participantes) ?? 0
         if menorQue == 0 {
-            return "NO puede estar vacio o ser menor que 0"
+            return "NO puede estar vacio o ser menor que 1"
         }
         return nil
     }
